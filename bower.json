@@ -1,0 +1,27 @@
+{
+  "name": "angular-vidbg",
+  "version": "0.0.0",
+  "authors": [
+    "2013gangli@gmail.com"
+  ],
+  "description": "Video background",
+  "keywords": [
+    "angular",
+    "video",
+    "background"
+  ],
+  "dependencies": {
+    "angular": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "*"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
