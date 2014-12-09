@@ -11,16 +11,26 @@
 
 </head>
 
-<body>
+<body ng-controller="mainCtrl">
 
-	<vid-bg></vid-bg>
+	<vid-bg resources="resources" params="params"></vid-bg>
 
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-	<script type="text/javascript" src="../dist/vidBg.min.js"></script>
+	<script type="text/javascript" src="../dist/vidBg.js"></script>
 	<script type="text/javascript">
 
 		angular
-		.module('demo', ['ngVidBg']);
+		.module('demo', ['ngVidBg'])
+		.controller('mainCtrl', ['$scope', function ($scope) {
+			$scope.resources = [
+				'http://video.webmfiles.org/big-buck-bunny_trailer.webm',
+				'http://techslides.com/demos/sample-videos/small.ogv',
+				'http://techslides.com/demos/sample-videos/small.mp4'
+			],
+			$scope.params = {
+				a: 'afd'
+			}
+		}]);
 
 	</script>
 </bodu>
