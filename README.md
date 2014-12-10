@@ -8,6 +8,20 @@ angular-video-background
 Give resouces urls end with .webm .mp4 or .ogv as array to the directive 
 ```<vid-bg resources="resources" params="params"></vid-bg>```
 
+## options
+
+| attribute         | optional? | example              | description                     |
+|-------------------|-----------|----------------------|---------------------------------|
+| resources         | no        | ['xx.webm','yy.mp4'] | video resources                 |
+| poster            | yes       | 'zzz.jpg'            | image shown before image loaded |
+| full-screen       | yes       | true                 | show video full screenly        |
+| muted             | yes       | true                 | if muted                        |
+| control           | yes       | false                | if show html5 video controls    |
+| loop              | yes       | true                 | continuesly loop video          |
+| auto-play         | yes       | true                 | play video on load and buffer it|
+| z-index           | yes       | 100                  | z-index of the video tag        |
+| error-msg         | yes       | 'error!'             | not support error message       |
+
 ## Coming soon
 
 Be able to set all kinds of params for your video background: mute, loop, autoplay. You can also set it to just fill any div instead of defautly fullscreen
