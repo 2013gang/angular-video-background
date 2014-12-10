@@ -7,13 +7,13 @@
 
 	<title>ngVidBg demo</title>
 
-	<link rel="../dist/vidBg.min.css">
+	<link rel="stylesheet" type="text/css" href="../dist/vidBg.min.css">
 
 </head>
 
 <body ng-controller="mainCtrl">
 
-	<vid-bg resources="resources" params="params"></vid-bg>
+	<vid-bg resources="resources" params="params" muted="muted" z-index="zIndex"></vid-bg>
 
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="../dist/vidBg.js"></script>
@@ -23,13 +23,18 @@
 		.module('demo', ['ngVidBg'])
 		.controller('mainCtrl', ['$scope', function ($scope) {
 			$scope.resources = [
-				'http://video.webmfiles.org/big-buck-bunny_trailer.webm',
+				//'http://video.webmfiles.org/big-buck-bunny_trailer.webm',
+				'http://techslides.com/demos/sample-videos/small.webm',
 				'http://techslides.com/demos/sample-videos/small.ogv',
-				'http://techslides.com/demos/sample-videos/small.mp4'
+				'http://techslides.com/demos/sample-videos/small.mp4',
+				'http://www.msfw.com/accessibility/presentations/flash2009/SkinUnderPlaySeekCaption.swf'
 			],
 			$scope.params = {
-				a: 'afd'
-			}
+				poster: 'http://placehold.it/600&text=you%20may%20want%20to%20have%20a%20poster',
+				fullScreen: true
+			},
+			$scope.muted = true,
+			$scope.zIndex = '22'
 		}]);
 
 	</script>

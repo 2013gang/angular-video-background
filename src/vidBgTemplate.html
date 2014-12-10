@@ -1,13 +1,19 @@
 <div class="vidBg-container" ng-style="vidBgContainerStyle">
-	<video autoplay loop poster class="vidBg-body" ng-style="vidBgBodyStyle">
+	<video muted="{{muted}}" autoplay="{{autoPlay}}" loop="{{loop}}" class="vidBg-body"
+		ng-style="{ 'background-image': 'url(' + poster + ')', 'position': fullScreen ? 'fixed' : 'absolute', 'z-index': zIndex}">
 
 		<source type="video/webm">
 
 		<source type="video/mp4">
 
-		<source type="video/ogv">
+		<source type="video/ogg">
 
-		{{notSupportErrorMsg}}
+		<object type="application/x-shockwave-flash" data="{{resourceMap.flash}}">
+			<param name="movie" />
+			<p>Download video as <a href="{{resourceMap.mp4}}">MP4</a>, <a href="{{resourceMap.webm}}">WebM</a>, or <a href="{{resourceMap.ogv}}">Ogg</a>.</p>
+		</object>
+
+		{{errorMsg}}
 
 	</video>
 </div>

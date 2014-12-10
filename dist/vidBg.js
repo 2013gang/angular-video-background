@@ -6794,12 +6794,11 @@ _ = require('lodash');
 
 angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
   muted: true,
+  control: false,
   loop: true,
   autoPlay: true,
-  fullScreen: true,
   zIndex: -1000,
-  poster: null,
-  notSupportErrorMsg: 'Your browser does not support the <code>video</code> element.'
+  errorMsg: 'Your browser does not support the <code>video</code> element.'
 }).directive('vidBg', [
   '$log', 'vidBgDefaults', function($log, vidBgDefaults) {
     return {
@@ -6822,16 +6821,26 @@ angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
                     return scope.resourceMap.mp4 = ele;
                   } else if (ele.toUpperCase().indexOf('.OGV', ele.length - '.OGV'.length) !== -1) {
                     return scope.resourceMap.ogv = ele;
+                  } else if (ele.toUpperCase().indexOf('.SWF', ele.length - '.SWF'.length) !== -1) {
+                    return scope.resourceMap.swf = ele;
                   }
                 }
               });
             }
-            return scope.notSupportErrorMsg = vidBgDefaults.notSupportErrorMsg;
+            scope.muted = (scope.$parent.$eval(attr.muted)) || vidBgDefaults.muted;
+            scope.control = (scope.$parent.$eval(attr.control)) || vidBgDefaults.control;
+            scope.loop = (scope.$parent.$eval(attr.loop)) || vidBgDefaults.loop;
+            scope.autoPlay = (scope.$parent.$eval(attr.autoPlay)) || vidBgDefaults.autoPlay;
+            scope.zIndex = +(scope.$parent.$eval(attr.zIndex)) || vidBgDefaults.zIndex;
+            scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
+            scope.fullScreen = scope.params.fullScreen;
+            return scope.poster = scope.params.poster || '';
           },
           post: function(scope, ele, attr) {
             ele.children().children().children().eq(0).attr('src', scope.resourceMap.webm);
             ele.children().children().children().eq(1).attr('src', scope.resourceMap.mp4);
-            return ele.children().children().children().eq(2).attr('src', scope.resourceMap.ogv);
+            ele.children().children().children().eq(2).attr('src', scope.resourceMap.ogv);
+            return ele.children().children().children().eq(3).children().eq(0).attr('value', scope.resourceMap.swf);
           }
         };
       }
@@ -6847,15 +6856,21 @@ angular.module('vidBgTemplate', ['vidBgTemplate.html']);
 angular.module("vidBgTemplate.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("vidBgTemplate.html",
     "<div class=\"vidBg-container\" ng-style=\"vidBgContainerStyle\">\n" +
-    "	<video autoplay loop poster class=\"vidBg-body\" ng-style=\"vidBgBodyStyle\">\n" +
+    "	<video muted=\"{{muted}}\" autoplay=\"{{autoPlay}}\" loop=\"{{loop}}\" class=\"vidBg-body\"\n" +
+    "		ng-style=\"{ 'background-image': 'url(' + poster + ')', 'position': fullScreen ? 'fixed' : 'absolute', 'z-index': zIndex}\">\n" +
     "\n" +
     "		<source type=\"video/webm\">\n" +
     "\n" +
     "		<source type=\"video/mp4\">\n" +
     "\n" +
-    "		<source type=\"video/ogv\">\n" +
+    "		<source type=\"video/ogg\">\n" +
     "\n" +
-    "		{{notSupportErrorMsg}}\n" +
+    "		<object type=\"application/x-shockwave-flash\" data=\"{{resourceMap.flash}}\">\n" +
+    "			<param name=\"movie\" />\n" +
+    "			<p>Download video as <a href=\"{{resourceMap.mp4}}\">MP4</a>, <a href=\"{{resourceMap.webm}}\">WebM</a>, or <a href=\"{{resourceMap.ogv}}\">Ogg</a>.</p>\n" +
+    "		</object>\n" +
+    "\n" +
+    "		{{errorMsg}}\n" +
     "\n" +
     "	</video>\n" +
     "</div>");

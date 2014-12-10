@@ -4,12 +4,11 @@ angular
 .module 'ngVidBg', ['vidBgTemplate']
 .constant 'vidBgDefaults',
   muted: true
+  control: false
   loop: true
   autoPlay: true
-  fullScreen: true
   zIndex: -1000
-  poster: null
-  notSupportErrorMsg: 'Your browser does not support the
+  errorMsg: 'Your browser does not support the
   <code>video</code> element.'
 .directive 'vidBg', ['$log', 'vidBgDefaults', ($log, vidBgDefaults) ->
   restrict: 'E'
@@ -32,8 +31,28 @@ angular
             else if ele.toUpperCase().indexOf(
               '.OGV', ele.length - '.OGV'.length) isnt -1
               scope.resourceMap.ogv = ele
-      scope.notSupportErrorMsg = vidBgDefaults.notSupportErrorMsg
+            else if ele.toUpperCase().indexOf(
+              '.SWF', ele.length - '.SWF'.length) isnt -1
+              scope.resourceMap.swf = ele
+      scope.muted = (scope.$parent.$eval attr.muted) ||
+        vidBgDefaults.muted
+      scope.control = (scope.$parent.$eval attr.control) ||
+        vidBgDefaults.control
+      scope.loop = (scope.$parent.$eval attr.loop) ||
+        vidBgDefaults.loop
+      scope.autoPlay = (scope.$parent.$eval attr.autoPlay) ||
+        vidBgDefaults.autoPlay
+      scope.zIndex = +(scope.$parent.$eval attr.zIndex) ||
+        vidBgDefaults.zIndex
+      scope.errorMsg = (scope.$parent.$eval attr.errorMsg) ||
+        vidBgDefaults.errorMsg
+
+      scope.fullScreen = scope.params.fullScreen
+      scope.poster = scope.params.poster || ''
+
     post: (scope, ele, attr) ->
+      # Need to mannually add src because of
+      # https://docs.angularjs.org/api/ng/service/$sce
       ele.children().children().children()
       .eq(0).attr('src', scope.resourceMap.webm)
 
@@ -42,4 +61,7 @@ angular
 
       ele.children().children().children()
       .eq(2).attr('src', scope.resourceMap.ogv)
+
+      ele.children().children().children()
+      .eq(3).children().eq(0).attr('value', scope.resourceMap.swf)
 ]
