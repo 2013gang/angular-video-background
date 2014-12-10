@@ -15,7 +15,8 @@ angular
   templateUrl: 'vidBgTemplate.html'
   scope:
     resources: '='
-    params: '='
+    fullScreen: '='
+    poster: '='
   compile: (ele, attr) ->
     pre: (scope, ele, attr) ->
       scope.resourceMap = {}
@@ -46,9 +47,6 @@ angular
         vidBgDefaults.zIndex
       scope.errorMsg = (scope.$parent.$eval attr.errorMsg) ||
         vidBgDefaults.errorMsg
-
-      scope.fullScreen = scope.params.fullScreen
-      scope.poster = scope.params.poster || ''
 
     post: (scope, ele, attr) ->
       # Need to mannually add src because of

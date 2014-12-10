@@ -6806,7 +6806,8 @@ angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
       templateUrl: 'vidBgTemplate.html',
       scope: {
         resources: '=',
-        params: '='
+        fullScreen: '=',
+        poster: '='
       },
       compile: function(ele, attr) {
         return {
@@ -6832,9 +6833,7 @@ angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
             scope.loop = (scope.$parent.$eval(attr.loop)) || vidBgDefaults.loop;
             scope.autoPlay = (scope.$parent.$eval(attr.autoPlay)) || vidBgDefaults.autoPlay;
             scope.zIndex = +(scope.$parent.$eval(attr.zIndex)) || vidBgDefaults.zIndex;
-            scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
-            scope.fullScreen = scope.params.fullScreen;
-            return scope.poster = scope.params.poster || '';
+            return scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
           },
           post: function(scope, ele, attr) {
             ele.children().children().children().eq(0).attr('src', scope.resourceMap.webm);
