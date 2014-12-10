@@ -3,6 +3,10 @@ angular-video-background
 
 > html5 video background in angular
 
+## Dependency
++ angular (*)
++ lodash (*)
+
 ## How to use it
 
 Give resouces urls end with .webm .mp4 or .ogv as array to the directive 
