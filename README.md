@@ -7,10 +7,30 @@ angular-video-background
 + angular (*)
 + lodash (*)
 
-## How to use it
+## How to get it
 
-Give resouces urls end with .webm .mp4 or .ogv as array to the directive 
-```<vid-bg resources="resources" params="params"></vid-bg>```
+```bower install --save angular-video-background```
+
+## Usage
+```html
+<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
+```
+```js
+angular
+	.module('demo', ['ngVidBg'])
+	.controller('mainCtrl', ['$scope', function ($scope) {
+		$scope.resources = [
+			'http://techslides.com/demos/sample-videos/small.webm',
+			'http://techslides.com/demos/sample-videos/small.ogv',
+			'http://techslides.com/demos/sample-videos/small.mp4',
+			'http://www.msfw.com/accessibility/presentations/flash2009/SkinUnderPlaySeekCaption.swf'
+		],
+		$scope.poster = 'http://placehold.it/600&text=you%20may%20want%20to%20have%20a%20poster',
+		$scope.fullScreen = true,
+		$scope.muted = true,
+		$scope.zIndex = '22'
+	}]);
+```
 
 ## options
 
@@ -26,15 +46,18 @@ Give resouces urls end with .webm .mp4 or .ogv as array to the directive
 | z-index           | yes       | 100                  | z-index of the video tag        |
 | error-msg         | yes       | 'error!'             | not support error message       |
 
+_Note_: Only `resources`, `poster` and `full-screen` are passed in as directly values. All other attributes are passing values as parent scope's members. Because these other options are for rare use cases.
+
 ## Coming soon
 
-Be able to set all kinds of params for your video background: mute, loop, autoplay. You can also set it to just fill any div instead of defautly fullscreen
-
-Also detailed accessible information about your video including loading status, played range, etc.
++ dymanic pause and play video with fading effect
++ detailed accessible information about your video including loading status, played range, etc.
++ testing on different browsers/devices
 
 ### Credits
   I started to have this idea from [turn's website] (http://turn.com/)
   inspired by [this] (http://demosthenes.info/blog/777/Create-Fullscreen-HTML5-Page-Background-Video)
-  references [1] (https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video)
+  
+  references: [1] (https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video)
   [2] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
   [3] (http://diveintohtml5.info/video.html)
