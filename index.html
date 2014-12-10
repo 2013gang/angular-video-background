@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>angular-video-background by 2013gang</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>angular-video-background</h1>
+        <h2>html5 video background in angular</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/2013gang/angular-video-background/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/2013gang/angular-video-background/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/2013gang/angular-video-background" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="angular-video-background" class="anchor" href="#angular-video-background" aria-hidden="true"><span class="octicon octicon-link"></span></a>angular-video-background</h1>
+
+<blockquote>
+<p>html5 video background in angular</p>
+</blockquote>
+
+<h2>
+<a id="dependency" class="anchor" href="#dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependency</h2>
+
+<ul>
+<li>angular (*)</li>
+<li>lodash (*)</li>
+</ul>
+
+<h2>
+<a id="how-to-get-it" class="anchor" href="#how-to-get-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to get it</h2>
+
+<p><code>bower install --save angular-video-background</code></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">vid</span><span class="pl-e">-bg</span> <span class="pl-e">resources</span>=<span class="pl-s1"><span class="pl-pds">"</span>resources<span class="pl-pds">"</span></span> <span class="pl-e">poster</span>=<span class="pl-s1"><span class="pl-pds">"</span>poster<span class="pl-pds">"</span></span> <span class="pl-e">full-screen</span>=<span class="pl-s1"><span class="pl-pds">"</span>fullScreen<span class="pl-pds">"</span></span> <span class="pl-e">muted</span>=<span class="pl-s1"><span class="pl-pds">"</span>muted<span class="pl-pds">"</span></span> <span class="pl-e">z-index</span>=<span class="pl-s1"><span class="pl-pds">"</span>zIndex<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">vid</span><span class="pl-e">-bg</span>&gt;</pre></div>
+
+<div class="highlight highlight-js"><pre>angular
+    .module(<span class="pl-s1"><span class="pl-pds">'</span>demo<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>ngVidBg<span class="pl-pds">'</span></span>])
+    .controller(<span class="pl-s1"><span class="pl-pds">'</span>mainCtrl<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>$scope<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">$scope</span>) {
+        $scope.resources <span class="pl-k">=</span> [
+            <span class="pl-s1"><span class="pl-pds">'</span>http://techslides.com/demos/sample-videos/small.webm<span class="pl-pds">'</span></span>,
+            <span class="pl-s1"><span class="pl-pds">'</span>http://techslides.com/demos/sample-videos/small.ogv<span class="pl-pds">'</span></span>,
+            <span class="pl-s1"><span class="pl-pds">'</span>http://techslides.com/demos/sample-videos/small.mp4<span class="pl-pds">'</span></span>,
+            <span class="pl-s1"><span class="pl-pds">'</span>http://www.msfw.com/accessibility/presentations/flash2009/SkinUnderPlaySeekCaption.swf<span class="pl-pds">'</span></span>
+        ],
+        $scope.poster <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>http://placehold.it/600&amp;text=you%20may%20want%20to%20have%20a%20poster<span class="pl-pds">'</span></span>,
+        $scope.fullScreen <span class="pl-k">=</span> <span class="pl-c1">true</span>,
+        $scope.muted <span class="pl-k">=</span> <span class="pl-c1">true</span>,
+        $scope.<span class="pl-sc">zIndex</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>22<span class="pl-pds">'</span></span>
+    }]);</pre></div>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>options</h2>
+
+<table>
+<thead>
+<tr>
+<th>attribute</th>
+<th>optional?</th>
+<th>example</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>resources</td>
+<td>no</td>
+<td>['xx.webm','yy.mp4']</td>
+<td>video resources</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>yes</td>
+<td>'zzz.jpg'</td>
+<td>image shown before image loaded</td>
+</tr>
+<tr>
+<td>full-screen</td>
+<td>yes</td>
+<td>true</td>
+<td>show video full screenly</td>
+</tr>
+<tr>
+<td>muted</td>
+<td>yes</td>
+<td>true</td>
+<td>if muted</td>
+</tr>
+<tr>
+<td>control</td>
+<td>yes</td>
+<td>false</td>
+<td>if show html5 video controls</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>yes</td>
+<td>true</td>
+<td>continuesly loop video</td>
+</tr>
+<tr>
+<td>auto-play</td>
+<td>yes</td>
+<td>true</td>
+<td>play video on load and buffer it</td>
+</tr>
+<tr>
+<td>z-index</td>
+<td>yes</td>
+<td>100</td>
+<td>z-index of the video tag</td>
+</tr>
+<tr>
+<td>error-msg</td>
+<td>yes</td>
+<td>'error!'</td>
+<td>not support error message</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>Note</em>: Only <code>resources</code>, <code>poster</code> and <code>full-screen</code> are passed in as directly values. All other attributes are passing values as parent scope's members. Because these other options are for rare use cases.</p>
+
+<h2>
+<a id="coming-soon" class="anchor" href="#coming-soon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coming soon</h2>
+
+<ul>
+<li>dymanic pause and play video with fading effect</li>
+<li>detailed accessible information about your video including loading status, played range, etc.</li>
+<li>testing on different browsers/devices</li>
+</ul>
+
+<h3>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h3>
+
+<p>I started to have this idea from <a href="http://turn.com/">turn's website</a>
+  inspired by <a href="http://demosthenes.info/blog/777/Create-Fullscreen-HTML5-Page-Background-Video">this</a></p>
+
+<p>references: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video">1</a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video">2</a>
+  <a href="http://diveintohtml5.info/video.html">3</a></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
