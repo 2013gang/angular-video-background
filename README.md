@@ -37,10 +37,10 @@ angular
 | attribute         | optional? | example              | description                     		   |
 |-------------------|-----------|----------------------|---------------------------------------------------|
 | resources         | no        | ['xx.webm','yy.mp4'] | video resources                 		   |
-| poster            | yes       | 'zzz.jpg'            | image shown before image loaded 		   |
+| poster            | yes       | 'zzz.jpg'            | image shown before video loaded 		   |
 | full-screen       | yes       | true                 | video will fill the width of its container        |
 
-there are a few other configurable options which can be passed as parent scope varaible name from attributes:
+there are a few other configurable options you may also want to use:
 `muted`, `control`, `loop`, `auto-play`, `z-index`, `error-msg`
 
 ## Coming soon
