@@ -25,7 +25,7 @@ angular
 			'http://techslides.com/demos/sample-videos/small.mp4',
 			'http://www.msfw.com/accessibility/presentations/flash2009/SkinUnderPlaySeekCaption.swf'
 		],
-		$scope.poster = 'http://placehold.it/600&text=you%20may%20want%20to%20have%20a%20poster',
+		$scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster',
 		$scope.fullScreen = true,
 		$scope.muted = true,
 		$scope.zIndex = '22'
@@ -34,25 +34,21 @@ angular
 
 ## options
 
-| attribute         | optional? | example              | description                     |
-|-------------------|-----------|----------------------|---------------------------------|
-| resources         | no        | ['xx.webm','yy.mp4'] | video resources                 |
-| poster            | yes       | 'zzz.jpg'            | image shown before image loaded |
-| full-screen       | yes       | true                 | show video full screenly        |
-| muted             | yes       | true                 | if muted                        |
-| control           | yes       | false                | if show html5 video controls    |
-| loop              | yes       | true                 | continuesly loop video          |
-| auto-play         | yes       | true                 | play video on load and buffer it|
-| z-index           | yes       | 100                  | z-index of the video tag        |
-| error-msg         | yes       | 'error!'             | not support error message       |
+| attribute         | optional? | example              | description                     		   |
+|-------------------|-----------|----------------------|---------------------------------------------------|
+| resources         | no        | ['xx.webm','yy.mp4'] | video resources                 		   |
+| poster            | yes       | 'zzz.jpg'            | image shown before image loaded 		   |
+| full-screen       | yes       | true                 | video will fill the width of its container        |
 
-_Note_: Only `resources`, `poster` and `full-screen` are passed in as directly values. All other attributes are passing values as parent scope's members. Because these other options are for rare use cases.
+there are a few other configurable options which can be passed as parent scope varaible name from attributes:
+`muted`, `control`, `loop`, `auto-play`, `z-index`, `error-msg`
 
 ## Coming soon
 
 + dymanic pause and play video with fading effect
 + detailed accessible information about your video including loading status, played range, etc.
 + testing on different browsers/devices
++ how to deal with legacy browsers and mobile
 
 ### Credits
   I started to have this idea from [turn's website] (http://turn.com/)
