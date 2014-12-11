@@ -6854,23 +6854,18 @@ angular.module('vidBgTemplate', ['vidBgTemplate.html']);
 
 angular.module("vidBgTemplate.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("vidBgTemplate.html",
-    "<div class=\"vidBg-container\" ng-style=\"vidBgContainerStyle\">\n" +
+    "<div class=\"vidBg-container\">\n" +
     "	<video muted=\"{{muted}}\" autoplay=\"{{autoPlay}}\" loop=\"{{loop}}\" class=\"vidBg-body\"\n" +
-    "		ng-style=\"{ 'background-image': 'url(' + poster + ')', 'position': fullScreen ? 'fixed' : 'absolute', 'z-index': zIndex}\">\n" +
-    "\n" +
+    "		ng-style=\"{ 'background': 'url(' + poster + ') #000 no-repeat center center fixed', 'z-index': zIndex}\"\n" +
+    "		ng-class=\"fullScreen ? 'vidBg-fullScreen' : 'vidBg-autoWidth'\">\n" +
     "		<source type=\"video/webm\">\n" +
-    "\n" +
     "		<source type=\"video/mp4\">\n" +
-    "\n" +
     "		<source type=\"video/ogg\">\n" +
-    "\n" +
     "		<object type=\"application/x-shockwave-flash\" data=\"{{resourceMap.flash}}\">\n" +
     "			<param name=\"movie\" />\n" +
     "			<p>Download video as <a href=\"{{resourceMap.mp4}}\">MP4</a>, <a href=\"{{resourceMap.webm}}\">WebM</a>, or <a href=\"{{resourceMap.ogv}}\">Ogg</a>.</p>\n" +
     "		</object>\n" +
-    "\n" +
-    "		{{errorMsg}}\n" +
-    "\n" +
+    "		<div>{{errorMsg}}</div>\n" +
     "	</video>\n" +
     "</div>");
 }]);

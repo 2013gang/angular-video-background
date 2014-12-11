@@ -12,8 +12,9 @@
 </head>
 
 <body ng-controller="mainCtrl">
-
-	<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
+	<div>
+		<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
+	</div>
 
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="../dist/vidBg.js"></script>
@@ -23,13 +24,11 @@
 		.module('demo', ['ngVidBg'])
 		.controller('mainCtrl', ['$scope', function ($scope) {
 			$scope.resources = [
-				//'http://video.webmfiles.org/big-buck-bunny_trailer.webm',
 				'http://techslides.com/demos/sample-videos/small.webm',
 				'http://techslides.com/demos/sample-videos/small.ogv',
-				'http://techslides.com/demos/sample-videos/small.mp4',
-				'http://www.msfw.com/accessibility/presentations/flash2009/SkinUnderPlaySeekCaption.swf'
+				'http://techslides.com/demos/sample-videos/small.mp4'
 			],
-			$scope.poster = 'http://placehold.it/600&text=you%20may%20want%20to%20have%20a%20poster',
+			$scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster',
 			$scope.fullScreen = true,
 			$scope.muted = true,
 			$scope.zIndex = '22'

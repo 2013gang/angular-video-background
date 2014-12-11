@@ -1,13 +1,18 @@
-div.vidBg-container {
-	position: relative;
+video.vidBg-body {
+	background-size: cover; 
 }
 
-.vidBg-body {
+video.vidBg-fullScreen {
+	position: fixed;
 	right: 0;
 	bottom: 0;
 	min-width: 100%;
 	min-height: 100%;
 	width: auto;
 	height: auto;
-	background-size: cover; 
+}
+
+video.vidBg-autoWidth {
+	width: 100%;
+	height: auto;
 }
