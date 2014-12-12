@@ -13,8 +13,10 @@
 
 <body ng-controller="mainCtrl">
 	<div>
-		<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
+		<vid-bg resources="resources" muted="muted" z-index="zIndex" pause-play="pausePlay"></vid-bg>
 	</div>
+
+	<button ng-click="pausePlay = !pausePlay;">Toggle Play</button>
 
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="../dist/vidBg.js"></script>
@@ -32,6 +34,7 @@
 			$scope.fullScreen = true,
 			$scope.muted = true,
 			$scope.zIndex = '22'
+			$scope.pausePlay = false;
 		}]);
 
 	</script>

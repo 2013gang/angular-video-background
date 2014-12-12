@@ -6807,7 +6807,8 @@ angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
       scope: {
         resources: '=',
         fullScreen: '=',
-        poster: '='
+        poster: '=',
+        pausePlay: '='
       },
       compile: function(ele, attr) {
         return {
@@ -6836,10 +6837,27 @@ angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
             return scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
           },
           post: function(scope, ele, attr) {
-            ele.children().children().children().eq(0).attr('src', scope.resourceMap.webm);
-            ele.children().children().children().eq(1).attr('src', scope.resourceMap.mp4);
-            ele.children().children().children().eq(2).attr('src', scope.resourceMap.ogv);
-            return ele.children().children().children().eq(3).children().eq(0).attr('value', scope.resourceMap.swf);
+            var vid, vidEle;
+            vid = ele.children().children();
+            vidEle = vid.eq(0);
+            vid.children().eq(0).attr('src', scope.resourceMap.webm);
+            vid.children().eq(1).attr('src', scope.resourceMap.mp4);
+            vid.children().eq(2).attr('src', scope.resourceMap.ogv);
+            vid.children().eq(3).children().eq(0).attr('value', scope.resourceMap.swf);
+            if (!scope.loop) {
+              vidEle.on('ended', function() {
+                return this.addClass('vidBg-fade');
+              });
+            }
+            return scope.$watch('pausePlay', function(val) {
+              if (val) {
+                vidEle.addClass('vidBg-fade');
+                return vidEle[0].pause();
+              } else {
+                vidEle.removeClass('vidBg-fade');
+                return vidEle[0].play();
+              }
+            });
           }
         };
       }

@@ -1,5 +1,10 @@
 video.vidBg-body {
-	background-size: cover; 
+	background-size: cover;
+	transition: 1s opacity;
+}
+
+video.vidBg-fade {
+	opacity: .5;
 }
 
 video.vidBg-fullScreen {

@@ -17,6 +17,7 @@ angular
     resources: '='
     fullScreen: '='
     poster: '='
+    pausePlay: '='
   compile: (ele, attr) ->
     pre: (scope, ele, attr) ->
       scope.resourceMap = {}
@@ -51,15 +52,29 @@ angular
     post: (scope, ele, attr) ->
       # Need to mannually add src because of
       # https://docs.angularjs.org/api/ng/service/$sce
-      ele.children().children().children()
+      vid = do ele.children().children
+      vidEle = vid.eq 0
+      vid.children()
       .eq(0).attr('src', scope.resourceMap.webm)
 
-      ele.children().children().children()
+      vid.children()
       .eq(1).attr('src', scope.resourceMap.mp4)
 
-      ele.children().children().children()
+      vid.children()
       .eq(2).attr('src', scope.resourceMap.ogv)
 
-      ele.children().children().children()
+      vid.children()
       .eq(3).children().eq(0).attr('value', scope.resourceMap.swf)
+
+      if !scope.loop
+        vidEle.on 'ended', ->
+          this.addClass 'vidBg-fade'
+
+      scope.$watch 'pausePlay', (val) ->
+        if (val)
+          vidEle.addClass 'vidBg-fade'
+          do vidEle[0].pause
+        else
+          vidEle.removeClass 'vidBg-fade'
+          do vidEle[0].play
 ]
