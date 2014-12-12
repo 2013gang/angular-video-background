@@ -3,6 +3,10 @@ angular-video-background
 
 > html5 fullscreen video background in angular
 
+## Description
+
+Eye-catching fullscreen video background is adopted by many modern websites for telling their stories. If you want to tell your story on your browser in angular, you now have a choice. Just provide the video resouces, you can have a fullscreen video background right away.
+
 ## Dependency
 + angular (*)
 + lodash (*)
@@ -39,13 +43,13 @@ angular
 | resources         | no        | ['xx.webm','yy.mp4'] | video resources                 		   |
 | poster            | yes       | 'zzz.jpg'            | image shown before video loaded 		   |
 | full-screen       | yes       | true                 | video will fill the width of its container        |
+| pause             | yes       | false                | whether to pause the video                        |
 
 there are a few other configurable options you may also want to use:
 `muted`, `control`, `loop`, `auto-play`, `z-index`, `error-msg`
 
 ## Coming soon
 
-+ dymanic pause and play video with fading effect
 + detailed accessible information about your video including loading status, played range, etc.
 + testing on different browsers/devices
 + how to deal with legacy browsers and mobile
