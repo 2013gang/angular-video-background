@@ -1,7 +1,7 @@
 angular-video-background
 ========================
 
-> html5 video background in angular
+> html5 fullscreen video background in angular
 
 ## Dependency
 + angular (*)
