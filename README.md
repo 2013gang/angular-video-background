@@ -1,7 +1,7 @@
 angular-video-background
 ========================
 
-> html5 fullscreen video background in angular
+> html5 fullscreen video background in angular  https://gang-demo.herokuapp.com/
 
 ## Description
 
@@ -49,7 +49,7 @@ there are a few other configurable options you may also want to use:
 `muted`, `control`, `loop`, `auto-play`, `z-index`, `error-msg`
 
 ## Coming soon
-
++ dynamic video change
 + detailed accessible information about your video including loading status, played range, etc.
 + testing on different browsers/devices
 + how to deal with legacy browsers and mobile
