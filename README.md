@@ -16,6 +16,9 @@ Eye-catching fullscreen video background is adopted by many modern websites for 
 ```bower install --save angular-video-background```
 
 ## Usage
+
+include dist/vidBg.js and dist/vidBg.css in your js and css file and then:
+
 ```html
 <vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
 ```
