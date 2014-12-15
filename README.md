@@ -1,7 +1,10 @@
 angular-video-background
 ========================
 
-> html5 fullscreen video background in angular  https://gang-demo.herokuapp.com/
+> html5 fullscreen video background in angular
+
+## Demo
+A demo can be viewed at: https://gang-demo.herokuapp.com/
 
 ## Description
 
