@@ -54,8 +54,11 @@ angular
 there are a few other configurable options you may also want to use:
 `muted`, `control`, `loop`, `auto-play`, `z-index`, `error-msg`
 
+### Features
++ dynamic change video resources and pause video
+
 ## Coming soon
-+ dynamic video change
++ <strike>dynamic video change</strike>
 + detailed accessible information about your video including loading status, played range, etc.
 + testing on different browsers/devices
 + how to deal with legacy browsers and mobile
