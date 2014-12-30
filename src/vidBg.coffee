@@ -1,5 +1,3 @@
-_ = require 'lodash'
-
 angular
 .module 'ngVidBg', ['vidBgTemplate']
 .constant 'vidBgDefaults',
@@ -29,15 +27,19 @@ angular
             if ele.toUpperCase().indexOf(
               '.WEBM', ele.length - '.WEBM'.length) isnt -1
               resourceMap.webm = ele
+              return
             else if ele.toUpperCase().indexOf(
               '.MP4', ele.length - '.MP4'.length) isnt -1
               resourceMap.mp4 = ele
+              return
             else if ele.toUpperCase().indexOf(
               '.OGV', ele.length - '.OGV'.length) isnt -1
               resourceMap.ogv = ele
+              return
             else if ele.toUpperCase().indexOf(
               '.SWF', ele.length - '.SWF'.length) isnt -1
               resourceMap.swf = ele
+              return
       return resourceMap
     appendResourceToDom = (resourceMap) ->
       # Need to mannually add src because of
@@ -68,6 +70,7 @@ angular
         vidBgDefaults.zIndex
       scope.errorMsg = (scope.$parent.$eval attr.errorMsg) ||
         vidBgDefaults.errorMsg
+      return
 
     post: (scope, ele, attr) ->
       appendResourceToDom scope.resourceMap

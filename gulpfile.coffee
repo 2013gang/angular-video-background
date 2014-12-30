@@ -22,50 +22,51 @@ AUTOPREFIXER_BROWSERS = [
 
 gulp.task 'styles', ->
 	gulp.src 'src/vidBg.scss'
-	.pipe $.sass
-		style: 'expanded'
-	.pipe $.autoprefixer
-		browsers: AUTOPREFIXER_BROWSERS
-	.pipe gulp.dest 'dist'
-	.pipe $.rename
-		suffix: '.min'
-	.pipe do $.minifycss
-	.pipe gulp.dest 'dist'
-	.pipe $.notify
-		message: 'styles task done'
+		.pipe $.sass
+			style: 'expanded'
+		.pipe $.autoprefixer
+			browsers: AUTOPREFIXER_BROWSERS
+		.pipe gulp.dest 'dist'
+		.pipe $.rename
+			suffix: '.min'
+		.pipe do $.minifycss
+		.pipe gulp.dest 'dist'
+		.pipe $.notify
+			message: 'styles task done'
 
 gulp.task 'scripts', ->
 	gulp.src 'src/*.coffee'
-	.pipe do $.coffeelint
-	.pipe do $.coffeelint.reporter
-	.pipe do $.coffeeify
-	.pipe do $.annotate
-	.pipe $.addsrc 'src/template.js'
-	.pipe $.concat 'vidBg.js'
-	.pipe gulp.dest 'dist'
-	.pipe do $.uglify
-	.pipe $.rename
-		suffix: '.min'
-	.pipe gulp.dest 'dist'
-	.pipe $.notify
-		message: 'scripts task done'
+		.pipe do $.coffeelint
+		.pipe do $.coffeelint.reporter
+		.pipe do $.coffee
+		.pipe $.addsrc 'src/template.js'
+		.pipe $.concat 'vidBg.js'
+		.pipe do $.annotate
+		.pipe do $.jshint
+		.pipe $.jshint.reporter 'default'
+		.pipe gulp.dest 'dist'
+		.pipe do $.uglify
+		.pipe $.rename
+			suffix: '.min'
+		.pipe gulp.dest 'dist'
+		.pipe $.notify
+			message: 'scripts task done'
 
 gulp.task 'html2js', ->
 	gulp.src 'src/*.html'
-	.pipe $.html2js
-		moduleName: 'vidBgTemplate'
-		prefix: ''
-		useStrict: true
-	.pipe $.concat 'template.js'
-	.pipe gulp.dest 'src'
-	.pipe $.notify
-		message: 'html2js task done'
+		.pipe $.html2js
+			moduleName: 'vidBgTemplate'
+			prefix: ''
+		.pipe $.concat 'template.js'
+		.pipe gulp.dest 'src'
+		.pipe $.notify
+			message: 'html2js task done'
 
 gulp.task 'watch', ->
 	gulp.watch 'src/*.coffee', ['scripts']
 	gulp.watch 'src/*.scss', ['styles']
 
-gulp.task 'default', (cb) ->
+gulp.task 'default', ['watch'], (cb) ->
 	runSequence 'html2js', ['styles', 'scripts'], 'clean', cb
 
 gulp.task 'clean', ->
@@ -74,4 +75,3 @@ gulp.task 'clean', ->
 	.pipe do $.clean
 	.pipe $.notify
 		message: 'clean task done'
-

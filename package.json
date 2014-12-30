@@ -1,8 +1,8 @@
 {
   "name": "angular-vidbg",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "angular video background",
-  "main": "index.js",
+  "main": "dist/vidBg.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,32 +14,16 @@
   "author": "2013gangli@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^6.2.0",
-    "browserify-ngannotate": "^0.2.0",
     "coffee-script": "^1.8.0",
-    "grunt": "^0.4.5",
-    "grunt-autoprefixer": "^1.0.1",
-    "grunt-browserify": "^2.1.0",
-    "grunt-coffeeify": "^0.1.3",
-    "grunt-coffeelint": "^0",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-coffee": "^0.10.1",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-jasmine": "^0.5.2",
-    "grunt-contrib-jshint": "~0.4.0",
-    "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-html2js": "^0.2.7",
-    "grunt-ng-annotate": "^0.4.0",
     "gulp": "^3.8.10",
     "gulp-add-src": "^0.2.0",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-clean": "^0.3.1",
+    "gulp-coffee": "^2.2.0",
     "gulp-coffeeify": "^0.1.2",
     "gulp-coffeelint": "^0.4.0",
     "gulp-concat": "^2.4.3",
+    "gulp-jshint": "^1.9.0",
     "gulp-load-plugins": "^0.8.0",
     "gulp-minify-css": "^0.3.11",
     "gulp-ng-annotate": "^0.4.3",
@@ -48,11 +32,6 @@
     "gulp-rename": "^1.2.0",
     "gulp-ruby-sass": "^0.7.1",
     "gulp-uglify": "^1.0.2",
-    "run-sequence": "^1.0.2",
-    "time-grunt": "^1.0.0"
-  },
-  "dependencies": {
-    "angular": "^1.3.36",
-    "lodash": "^2.4.1"
+    "run-sequence": "^1.0.2"
   }
 }
