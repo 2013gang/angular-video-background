@@ -1,3 +1,21 @@
+angular.module('srcvidBgTemplate.html', []).run(['$templateCache', function($templateCache) {
+  $templateCache.put('srcvidBgTemplate.html',
+    '<div class="vidBg-container">\n' +
+    '	<video muted="{{muted}}" autoplay="{{autoPlay}}" loop="{{loop}}" class="vidBg-body"\n' +
+    '		ng-style="{ \'background\': \'url(\' + poster + \') #000 no-repeat center center fixed\', \'z-index\': zIndex}"\n' +
+    '		ng-class="fullScreen ? \'vidBg-fullScreen\' : \'vidBg-autoWidth\'">\n' +
+    '		<source type="video/webm">\n' +
+    '		<source type="video/mp4">\n' +
+    '		<source type="video/ogg">\n' +
+    '		<object type="application/x-shockwave-flash" data="{{resourceMap.flash}}">\n' +
+    '			<param name="movie" />\n' +
+    '			<p>Download video as <a href="{{resourceMap.mp4}}">MP4</a>, <a href="{{resourceMap.webm}}">WebM</a>, or <a href="{{resourceMap.ogv}}">Ogg</a>.</p>\n' +
+    '		</object>\n' +
+    '		<div>{{errorMsg}}</div>\n' +
+    '	</video>\n' +
+    '</div>');
+}]);
+
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 /**
@@ -6788,102 +6806,98 @@
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
-var _;
+(function() {
+  var _;
 
-_ = require('lodash');
+  _ = require('lodash');
 
-angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
-  muted: true,
-  control: false,
-  loop: true,
-  autoPlay: true,
-  zIndex: -1000,
-  errorMsg: 'Your browser does not support the <code>video</code> element.'
-}).directive('vidBg', [
-  '$log', 'vidBgDefaults', function($log, vidBgDefaults) {
-    return {
-      restrict: 'E',
-      templateUrl: 'vidBgTemplate.html',
-      scope: {
-        resources: '=',
-        fullScreen: '=',
-        poster: '=',
-        pausePlay: '='
-      },
-      compile: function(ele, attr) {
-        return {
-          pre: function(scope, ele, attr) {
-            scope.resourceMap = {};
-            if (_.isArray(scope.resources)) {
-              _.each(scope.resources, function(ele, index) {
+  angular.module('ngVidBg', ['vidBgTemplate']).constant('vidBgDefaults', {
+    muted: true,
+    control: false,
+    loop: true,
+    autoPlay: true,
+    zIndex: -1000,
+    errorMsg: 'Your browser does not support the <code>video</code> element.'
+  }).directive('vidBg', [
+    '$log', 'vidBgDefaults', function($log, vidBgDefaults) {
+      return {
+        restrict: 'E',
+        templateUrl: 'vidBgTemplate.html',
+        scope: {
+          resources: '=',
+          fullScreen: '=',
+          poster: '=',
+          pausePlay: '='
+        },
+        compile: function(ele, attr) {
+          var appendResourceToDom, processResources, vid, vidEle;
+          vid = ele.children().children();
+          vidEle = vid.eq(0);
+          processResources = function(resources) {
+            var resourceMap;
+            resourceMap = {};
+            if (_.isArray(resources)) {
+              _.each(resources, function(ele, index) {
                 if (_.isString(ele)) {
                   if (ele.toUpperCase().indexOf('.WEBM', ele.length - '.WEBM'.length) !== -1) {
-                    return scope.resourceMap.webm = ele;
+                    return resourceMap.webm = ele;
                   } else if (ele.toUpperCase().indexOf('.MP4', ele.length - '.MP4'.length) !== -1) {
-                    return scope.resourceMap.mp4 = ele;
+                    return resourceMap.mp4 = ele;
                   } else if (ele.toUpperCase().indexOf('.OGV', ele.length - '.OGV'.length) !== -1) {
-                    return scope.resourceMap.ogv = ele;
+                    return resourceMap.ogv = ele;
                   } else if (ele.toUpperCase().indexOf('.SWF', ele.length - '.SWF'.length) !== -1) {
-                    return scope.resourceMap.swf = ele;
+                    return resourceMap.swf = ele;
                   }
                 }
               });
             }
-            scope.muted = (scope.$parent.$eval(attr.muted)) || vidBgDefaults.muted;
-            scope.control = (scope.$parent.$eval(attr.control)) || vidBgDefaults.control;
-            scope.loop = (scope.$parent.$eval(attr.loop)) || vidBgDefaults.loop;
-            scope.autoPlay = (scope.$parent.$eval(attr.autoPlay)) || vidBgDefaults.autoPlay;
-            scope.zIndex = +(scope.$parent.$eval(attr.zIndex)) || vidBgDefaults.zIndex;
-            return scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
-          },
-          post: function(scope, ele, attr) {
-            var vid, vidEle;
-            vid = ele.children().children();
-            vidEle = vid.eq(0);
-            vid.children().eq(0).attr('src', scope.resourceMap.webm);
-            vid.children().eq(1).attr('src', scope.resourceMap.mp4);
-            vid.children().eq(2).attr('src', scope.resourceMap.ogv);
-            vid.children().eq(3).children().eq(0).attr('value', scope.resourceMap.swf);
-            if (!scope.loop) {
-              vidEle.on('ended', function() {
-                return this.addClass('vidBg-fade');
+            return resourceMap;
+          };
+          appendResourceToDom = function(resourceMap) {
+            vid.children().eq(0).attr('src', resourceMap.webm);
+            vid.children().eq(1).attr('src', resourceMap.mp4);
+            vid.children().eq(2).attr('src', resourceMap.ogv);
+            return vid.children().eq(3).children().eq(0).attr('value', resourceMap.swf);
+          };
+          return {
+            pre: function(scope, ele, attr) {
+              scope.resourceMap = processResources(scope.resources);
+              scope.muted = (scope.$parent.$eval(attr.muted)) || vidBgDefaults.muted;
+              scope.control = (scope.$parent.$eval(attr.control)) || vidBgDefaults.control;
+              scope.loop = (scope.$parent.$eval(attr.loop)) || vidBgDefaults.loop;
+              scope.autoPlay = (scope.$parent.$eval(attr.autoPlay)) || vidBgDefaults.autoPlay;
+              scope.zIndex = +(scope.$parent.$eval(attr.zIndex)) || vidBgDefaults.zIndex;
+              return scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
+            },
+            post: function(scope, ele, attr) {
+              appendResourceToDom(scope.resourceMap);
+              if (!scope.loop) {
+                vidEle.on('ended', function() {
+                  return this.addClass('vidBg-fade');
+                });
+              }
+              scope.$watch('pausePlay', function(val) {
+                if (val) {
+                  vidEle.addClass('vidBg-fade');
+                  return vidEle[0].pause();
+                } else {
+                  vidEle.removeClass('vidBg-fade');
+                  return vidEle[0].play();
+                }
+              });
+              return scope.$watch('resources', function(val) {
+                vidEle[0].pause();
+                appendResourceToDom(processResources(val));
+                vidEle[0].load();
+                return vidEle[0].play();
               });
             }
-            return scope.$watch('pausePlay', function(val) {
-              if (val) {
-                vidEle.addClass('vidBg-fade');
-                return vidEle[0].pause();
-              } else {
-                vidEle.removeClass('vidBg-fade');
-                return vidEle[0].play();
-              }
-            });
-          }
-        };
-      }
-    };
-  }
-]);
+          };
+        }
+      };
+    }
+  ]);
 
+}).call(this);
 
-
-},{"lodash":1}]},{},[2]);
-angular.module('vidBgTemplate', ['vidBgTemplate.html']);
-
-angular.module("vidBgTemplate.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("vidBgTemplate.html",
-    "<div class=\"vidBg-container\">\n" +
-    "	<video muted=\"{{muted}}\" autoplay=\"{{autoPlay}}\" loop=\"{{loop}}\" class=\"vidBg-body\"\n" +
-    "		ng-style=\"{ 'background': 'url(' + poster + ') #000 no-repeat center center fixed', 'z-index': zIndex}\"\n" +
-    "		ng-class=\"fullScreen ? 'vidBg-fullScreen' : 'vidBg-autoWidth'\">\n" +
-    "		<source type=\"video/webm\">\n" +
-    "		<source type=\"video/mp4\">\n" +
-    "		<source type=\"video/ogg\">\n" +
-    "		<object type=\"application/x-shockwave-flash\" data=\"{{resourceMap.flash}}\">\n" +
-    "			<param name=\"movie\" />\n" +
-    "			<p>Download video as <a href=\"{{resourceMap.mp4}}\">MP4</a>, <a href=\"{{resourceMap.webm}}\">WebM</a>, or <a href=\"{{resourceMap.ogv}}\">Ogg</a>.</p>\n" +
-    "		</object>\n" +
-    "		<div>{{errorMsg}}</div>\n" +
-    "	</video>\n" +
-    "</div>");
-}]);
+},{"lodash":1}]},{},[2])

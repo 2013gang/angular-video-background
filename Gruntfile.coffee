@@ -1,5 +1,7 @@
 module.exports = (grunt) ->
 
+	(require 'time-grunt') grunt
+
 	[
 		'grunt-browserify'
 		'grunt-coffeelint'

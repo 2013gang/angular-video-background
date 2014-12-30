@@ -19,23 +19,43 @@ angular
     poster: '='
     pausePlay: '='
   compile: (ele, attr) ->
-    pre: (scope, ele, attr) ->
-      scope.resourceMap = {}
-      if _.isArray scope.resources
-        _.each scope.resources, (ele, index) ->
+    vid = do ele.children().children
+    vidEle = vid.eq 0
+    processResources = (resources) ->
+      resourceMap = {}
+      if _.isArray resources
+        _.each resources, (ele, index) ->
           if _.isString ele
             if ele.toUpperCase().indexOf(
               '.WEBM', ele.length - '.WEBM'.length) isnt -1
-              scope.resourceMap.webm = ele
+              resourceMap.webm = ele
             else if ele.toUpperCase().indexOf(
               '.MP4', ele.length - '.MP4'.length) isnt -1
-              scope.resourceMap.mp4 = ele
+              resourceMap.mp4 = ele
             else if ele.toUpperCase().indexOf(
               '.OGV', ele.length - '.OGV'.length) isnt -1
-              scope.resourceMap.ogv = ele
+              resourceMap.ogv = ele
             else if ele.toUpperCase().indexOf(
               '.SWF', ele.length - '.SWF'.length) isnt -1
-              scope.resourceMap.swf = ele
+              resourceMap.swf = ele
+      return resourceMap
+    appendResourceToDom = (resourceMap) ->
+      # Need to mannually add src because of
+      # https://docs.angularjs.org/api/ng/service/$sce
+      vid.children()
+      .eq(0).attr('src', resourceMap.webm)
+
+      vid.children()
+      .eq(1).attr('src', resourceMap.mp4)
+
+      vid.children()
+      .eq(2).attr('src', resourceMap.ogv)
+
+      vid.children()
+      .eq(3).children().eq(0).attr('value', resourceMap.swf)
+
+    pre: (scope, ele, attr) ->
+      scope.resourceMap = processResources scope.resources
       scope.muted = (scope.$parent.$eval attr.muted) ||
         vidBgDefaults.muted
       scope.control = (scope.$parent.$eval attr.control) ||
@@ -50,22 +70,7 @@ angular
         vidBgDefaults.errorMsg
 
     post: (scope, ele, attr) ->
-      # Need to mannually add src because of
-      # https://docs.angularjs.org/api/ng/service/$sce
-      vid = do ele.children().children
-      vidEle = vid.eq 0
-      vid.children()
-      .eq(0).attr('src', scope.resourceMap.webm)
-
-      vid.children()
-      .eq(1).attr('src', scope.resourceMap.mp4)
-
-      vid.children()
-      .eq(2).attr('src', scope.resourceMap.ogv)
-
-      vid.children()
-      .eq(3).children().eq(0).attr('value', scope.resourceMap.swf)
-
+      appendResourceToDom scope.resourceMap
       if !scope.loop
         vidEle.on 'ended', ->
           this.addClass 'vidBg-fade'
@@ -77,4 +82,9 @@ angular
         else
           vidEle.removeClass 'vidBg-fade'
           do vidEle[0].play
+      scope.$watch 'resources', (val) ->
+        do vidEle[0].pause
+        appendResourceToDom processResources val
+        do vidEle[0].load
+        do vidEle[0].play
 ]

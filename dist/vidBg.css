@@ -1,10 +1,12 @@
 video.vidBg-body {
   background-size: cover;
   -webkit-transition: 1s opacity;
-          transition: 1s opacity; }
+          transition: 1s opacity;
+}
 
 video.vidBg-fade {
-  opacity: .5; }
+  opacity: .5;
+}
 
 video.vidBg-fullScreen {
   position: fixed;
@@ -13,8 +15,10 @@ video.vidBg-fullScreen {
   min-width: 100%;
   min-height: 100%;
   width: auto;
-  height: auto; }
+  height: auto;
+}
 
 video.vidBg-autoWidth {
   width: 100%;
-  height: auto; }
+  height: auto;
+}
