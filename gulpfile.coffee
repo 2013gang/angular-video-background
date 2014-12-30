@@ -51,8 +51,8 @@ gulp.task 'scripts', ->
 gulp.task 'html2js', ->
 	gulp.src 'src/*.html'
 	.pipe $.html2js
-		outputModuleName: 'vidBgTemplate'
-		prefix: 'src'
+		moduleName: 'vidBgTemplate'
+		prefix: ''
 		useStrict: true
 	.pipe $.concat 'template.js'
 	.pipe gulp.dest 'src'

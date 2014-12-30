@@ -1,6 +1,6 @@
 {
   "name": "angular-vidbg",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "authors": [
     "2013gangli@gmail.com"
   ],
@@ -22,7 +22,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests",
-    "src"
+    "src",
+    "Gruntfile.coffee",
+    "gulpfile.coffee"
   ]
 }
