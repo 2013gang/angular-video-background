@@ -6,6 +6,7 @@ $ = (require 'gulp-load-plugins')
 		'gulp-minify-css': 'minifycss'
 		'gulp-add-src': 'addsrc'
 		'gulp-ng-html2js': 'html2js'
+		'gulp-ng-annotate': 'annotate'
 
 AUTOPREFIXER_BROWSERS = [
 	'ie >= 10'
@@ -38,12 +39,13 @@ gulp.task 'scripts', ->
 	.pipe do $.coffeelint
 	.pipe do $.coffeelint.reporter
 	.pipe do $.coffeeify
+	.pipe do $.annotate
 	.pipe $.addsrc 'src/template.js'
 	.pipe $.concat 'vidBg.js'
 	.pipe gulp.dest 'dist'
+	.pipe do $.uglify
 	.pipe $.rename
 		suffix: '.min'
-	.pipe do $.uglify
 	.pipe gulp.dest 'dist'
 	.pipe $.notify
 		message: 'scripts task done'
