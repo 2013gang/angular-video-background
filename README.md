@@ -20,7 +20,11 @@ Eye-catching fullscreen video background is adopted by many modern websites for 
 
 ## Usage
 
-include 3rd dependencies (angular, lodash) and dist/vidBg.js in your js file, include dist/vidBg.css in your css file, then:
+include 3rd dependencies (angular, lodash) and dist/vidBg.js in your js file
+
+include dist/vidBg.css in your css file
+
+then:
 
 ```html
 <vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
