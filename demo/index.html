@@ -13,11 +13,12 @@
 
 <body ng-controller="mainCtrl">
 	<div>
-		<vid-bg resources="resources" muted="muted" z-index="zIndex" pause-play="pausePlay"></vid-bg>
+		<vid-bg resources="resources" muted="muted" z-index="zIndex" pause-play="pausePlay" play-info="playInfo"></vid-bg>
 	</div>
-
+	<div>Buffer status: {{playInfo.buffer}}</div>
+	<div>Played: {{playInfo.played}}</div>
 	<button ng-click="pausePlay = !pausePlay;">Toggle Play</button>
-	<button ng-click="resources = ['http://demosthenes.info/assets/videos/polina.webm']">Change resource</button>
+	<button ng-click="resources = ['http://demosthenes.info/assets/videos/polina.webm', 'http://techslides.com/demos/sample-videos/small.mp4'].slice(currentResourceIdx, 2); currentResourceIdx = 1 - currentResourceIdx;">Change resource</button>
 
 	<script type="text/javascript" src="../bower_components/lodash/dist/lodash.js"></script>
 	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
@@ -36,7 +37,9 @@
 			$scope.fullScreen = true,
 			$scope.muted = true,
 			$scope.zIndex = '22'
-			$scope.pausePlay = false;
+			$scope.pausePlay = false,
+			$scope.currentResourceIdx = 0;
+			$scope.playInfo = {};
 		}]);
 
 	</script>

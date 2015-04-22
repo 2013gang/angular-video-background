@@ -16,6 +16,7 @@ angular
     fullScreen: '='
     poster: '='
     pausePlay: '='
+    playInfo: '='
   compile: (ele, attr) ->
     vid = do ele.children().children
     vidEle = vid.eq 0
@@ -45,16 +46,17 @@ angular
       # Need to mannually add src because of
       # https://docs.angularjs.org/api/ng/service/$sce
       vid.children()
-      .eq(0).attr('src', resourceMap.webm)
+      .eq(0).attr('src', if resourceMap.webm then resourceMap.webm else '')
 
       vid.children()
-      .eq(1).attr('src', resourceMap.mp4)
+      .eq(1).attr('src', if resourceMap.mp4 then resourceMap.mp4 else '')
 
       vid.children()
-      .eq(2).attr('src', resourceMap.ogv)
+      .eq(2).attr('src', if resourceMap.ogv then resourceMap.ogv else '')
 
       vid.children()
-      .eq(3).children().eq(0).attr('value', resourceMap.swf)
+      .eq(3).children().eq(0)
+      .attr('value', if resourceMap.swf then resourceMap.swf else '')
 
     pre: (scope, ele, attr) ->
       scope.resourceMap = processResources scope.resources
@@ -70,6 +72,9 @@ angular
         vidBgDefaults.zIndex
       scope.errorMsg = (scope.$parent.$eval attr.errorMsg) ||
         vidBgDefaults.errorMsg
+      scope.playInfo =
+        buffer: 0
+        played: 0
       return
 
     post: (scope, ele, attr) ->
@@ -86,8 +91,18 @@ angular
           vidEle.removeClass 'vidBg-fade'
           do vidEle[0].play
       scope.$watch 'resources', (val) ->
+        vidEle.removeClass 'vidBg-fade'
         do vidEle[0].pause
         appendResourceToDom processResources val
         do vidEle[0].load
         do vidEle[0].play
+      , true
+
+      vidEle.on 'progress', ->
+        scope.playInfo.buffer = this.buffered.end(0) / this.duration
+        do scope.$apply
+      vidEle.on 'timeupdate', ->
+        scope.playInfo.played = this.currentTime / this.duration
+        do scope.$apply
+
 ]

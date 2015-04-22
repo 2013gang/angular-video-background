@@ -15,7 +15,8 @@
           resources: '=',
           fullScreen: '=',
           poster: '=',
-          pausePlay: '='
+          pausePlay: '=',
+          playInfo: '='
         },
         compile: function(ele, attr) {
           var appendResourceToDom, processResources, vid, vidEle;
@@ -42,10 +43,10 @@
             return resourceMap;
           };
           appendResourceToDom = function(resourceMap) {
-            vid.children().eq(0).attr('src', resourceMap.webm);
-            vid.children().eq(1).attr('src', resourceMap.mp4);
-            vid.children().eq(2).attr('src', resourceMap.ogv);
-            return vid.children().eq(3).children().eq(0).attr('value', resourceMap.swf);
+            vid.children().eq(0).attr('src', resourceMap.webm ? resourceMap.webm : '');
+            vid.children().eq(1).attr('src', resourceMap.mp4 ? resourceMap.mp4 : '');
+            vid.children().eq(2).attr('src', resourceMap.ogv ? resourceMap.ogv : '');
+            return vid.children().eq(3).children().eq(0).attr('value', resourceMap.swf ? resourceMap.swf : '');
           };
           return {
             pre: function(scope, ele, attr) {
@@ -56,6 +57,10 @@
               scope.autoPlay = (scope.$parent.$eval(attr.autoPlay)) || vidBgDefaults.autoPlay;
               scope.zIndex = +(scope.$parent.$eval(attr.zIndex)) || vidBgDefaults.zIndex;
               scope.errorMsg = (scope.$parent.$eval(attr.errorMsg)) || vidBgDefaults.errorMsg;
+              scope.playInfo = {
+                buffer: 0,
+                played: 0
+              };
             },
             post: function(scope, ele, attr) {
               appendResourceToDom(scope.resourceMap);
@@ -73,11 +78,20 @@
                   return vidEle[0].play();
                 }
               });
-              return scope.$watch('resources', function(val) {
+              scope.$watch('resources', function(val) {
+                vidEle.removeClass('vidBg-fade');
                 vidEle[0].pause();
                 appendResourceToDom(processResources(val));
                 vidEle[0].load();
                 return vidEle[0].play();
+              }, true);
+              vidEle.on('progress', function() {
+                scope.playInfo.buffer = this.buffered.end(0) / this.duration;
+                return scope.$apply();
+              });
+              return vidEle.on('timeupdate', function() {
+                scope.playInfo.played = this.currentTime / this.duration;
+                return scope.$apply();
               });
             }
           };
