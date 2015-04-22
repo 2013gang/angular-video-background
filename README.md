@@ -64,7 +64,7 @@ there are a few other configurable options you may also want to use:
 
 ## Coming soon
 + <strike>dynamic video change</strike>
-+ detailed accessible information about your video including loading status, played range, etc.
++ <strike>detailed accessible information about your video including loading status, played range, etc.</strike>
 + testing on different browsers/devices
 + how to deal with legacy browsers and mobile
 
