@@ -60,7 +60,8 @@ there are a few other configurable options you may also want to use:
 `muted`, `control`, `loop`, `auto-play`, `z-index`, `error-msg`
 
 ### Features
-+ dynamic change video resources and pause video
++ Dynamic change video resources and pause video
++ Show video buffer status and played status
 
 ## Coming soon
 + <strike>dynamic video change</strike>
