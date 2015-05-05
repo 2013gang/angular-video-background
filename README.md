@@ -27,7 +27,7 @@ include dist/vidBg.css in your css file
 then:
 
 ```html
-<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex"></vid-bg>
+<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
 ```
 ```js
 angular
@@ -38,11 +38,13 @@ angular
 			'*.ogv',
 			'*.mp4',
 			'*.swf'
-		],
-		$scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster',
-		$scope.fullScreen = true,
-		$scope.muted = true,
-		$scope.zIndex = '22'
+		];
+		$scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
+		$scope.fullScreen = true;
+		$scope.muted = true;
+		$scope.zIndex = '22';
+		$scope.playInfo = {};
+		$scope.pausePlay = true;
 	}]);
 ```
 Note: .webm, .ogv, .mp4 are the supported resource types. .swf is the fallback resource for environment that does not support the above types.
