@@ -7,13 +7,13 @@
 
 	<title>ngVidBg demo</title>
 
-	<link rel="stylesheet" type="text/css" href="../dist/vidBg.min.css">
+	<link rel="stylesheet" type="text/css" href="../dist/vidBg.css">
 
 </head>
 
 <body ng-controller="mainCtrl">
 	<div>
-		<vid-bg resources="resources" muted="muted" z-index="zIndex" pause-play="pausePlay" play-info="playInfo"></vid-bg>
+		<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
 	</div>
 	<div>Buffer status: {{playInfo.buffer}}</div>
 	<div>Played: {{playInfo.played}}</div>
