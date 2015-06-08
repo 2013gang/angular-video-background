@@ -1,6 +1,6 @@
 {
   "name": "angular-vidbg",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "angular video background",
   "main": "dist/vidBg.js",
   "scripts": {
