@@ -59,6 +59,7 @@ angular
       .attr('value', if resourceMap.swf then resourceMap.swf else '')
 
     pre: (scope, ele, attr) ->
+      scope.posterUrl = if scope.poster then scope.poster else ''
       scope.resourceMap = processResources scope.resources
       scope.muted = (scope.$parent.$eval attr.muted) ||
         vidBgDefaults.muted
@@ -99,8 +100,9 @@ angular
       , true
 
       vidEle.on 'progress', ->
-        scope.playInfo.buffer = this.buffered.end(0) / this.duration
-        do scope.$apply
+        if this.onprogress
+          scope.playInfo.buffer = this.buffered.end(0) / this.duration
+          do scope.$apply
       vidEle.on 'timeupdate', ->
         scope.playInfo.played = this.currentTime / this.duration
         do scope.$apply

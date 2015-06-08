@@ -50,6 +50,7 @@
           };
           return {
             pre: function(scope, ele, attr) {
+              scope.posterUrl = scope.poster ? scope.poster : '';
               scope.resourceMap = processResources(scope.resources);
               scope.muted = (scope.$parent.$eval(attr.muted)) || vidBgDefaults.muted;
               scope.control = (scope.$parent.$eval(attr.control)) || vidBgDefaults.control;
@@ -86,8 +87,10 @@
                 return vidEle[0].play();
               }, true);
               vidEle.on('progress', function() {
-                scope.playInfo.buffer = this.buffered.end(0) / this.duration;
-                return scope.$apply();
+                if (this.onprogress) {
+                  scope.playInfo.buffer = this.buffered.end(0) / this.duration;
+                  return scope.$apply();
+                }
               });
               return vidEle.on('timeupdate', function() {
                 scope.playInfo.played = this.currentTime / this.duration;
@@ -112,7 +115,7 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('vidBgTemplate.html',
     '<div class="vidBg-container">\n' +
     '	<video muted="{{muted}}" autoplay="{{autoPlay}}" loop="{{loop}}" class="vidBg-body"\n' +
-    '		ng-style="{ \'background\': \'url(\' + poster + \') #000 no-repeat center center fixed\', \'z-index\': zIndex}"\n' +
+    '		ng-style="{ \'background\': \'url(\' + posterUrl + \') #000 no-repeat center center fixed\', \'z-index\': zIndex}"\n' +
     '		ng-class="fullScreen ? \'vidBg-fullScreen\' : \'vidBg-autoWidth\'">\n' +
     '		<source type="video/webm">\n' +
     '		<source type="video/mp4">\n' +

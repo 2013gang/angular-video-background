@@ -63,8 +63,12 @@ gulp.task 'html2js', ->
 			message: 'html2js task done'
 
 gulp.task 'watch', ->
-	gulp.watch 'src/*.coffee', ['scripts']
+	gulp.watch 'src/*.coffee', ['srcOrTemplateTask']
+	gulp.watch 'src/*.html', ['srcOrTemplateTask']
 	gulp.watch 'src/*.scss', ['styles']
+
+gulp.task 'srcOrTemplateTask', ->
+	runSequence 'html2js', 'scripts', 'clean'
 
 gulp.task 'default', ['watch'], (cb) ->
 	runSequence 'html2js', ['styles', 'scripts'], 'clean', cb
