@@ -100,9 +100,9 @@ angular
       , true
 
       vidEle.on 'progress', ->
-        if this.onprogress
-          scope.playInfo.buffer = this.buffered.end(0) / this.duration
-          do scope.$apply
+          if this.buffered.length > 0
+              scope.playInfo.buffer = this.buffered.end(0) / this.duration
+              do scope.$apply
       vidEle.on 'timeupdate', ->
         scope.playInfo.played = this.currentTime / this.duration
         do scope.$apply

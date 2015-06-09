@@ -87,7 +87,7 @@
                 return vidEle[0].play();
               }, true);
               vidEle.on('progress', function() {
-                if (this.onprogress) {
+                if (this.buffered.length > 0) {
                   scope.playInfo.buffer = this.buffered.end(0) / this.duration;
                   return scope.$apply();
                 }
