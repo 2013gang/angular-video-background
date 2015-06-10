@@ -72,8 +72,8 @@ there are a few other configurable options you may also want to use:
 + how to deal with legacy browsers and mobile
 
 ### Credits
-  Inspired by [this] (http://demosthenes.info/blog/777/Create-Fullscreen-HTML5-Page-Background-Video)
+  Inspired by <a href="http://demosthenes.info/blog/777/Create-Fullscreen-HTML5-Page-Background-Video" target="_blank">this</a>
   
-  references: [1] (https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video), 
-  [2] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [3] (http://diveintohtml5.info/video.html)
+  references: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video" target="_blank">[1]</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" target="_blank">[2]</a>
+, <a href="http://diveintohtml5.info/video.html" target="_blank">[3]</a>
 
