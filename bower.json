@@ -18,6 +18,10 @@
     "angular-mocks": "*"
   },
   "license": "MIT",
+  "main": [
+    "dist/vidBg.css",
+    "dist/vidBg.js"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
