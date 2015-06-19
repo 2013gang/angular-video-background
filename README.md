@@ -76,3 +76,6 @@ there are a few other configurable options you may also want to use:
   
   references: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video" target="_blank">[1]</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" target="_blank">[2]</a>, <a href="http://diveintohtml5.info/video.html" target="_blank">[3]</a>
 
+### Credits
+  MIT
+
