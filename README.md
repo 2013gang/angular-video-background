@@ -17,7 +17,9 @@ Eye-catching fullscreen video background is adopted by many modern websites for 
 ## How to get it
 
 ```bower install --save angular-video-background```
+
 or
+
 ```npm install --save angular-vidbg```
 
 ## Usage
