@@ -116,7 +116,7 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="vidBg-container">\n' +
     '	<video muted="{{muted}}" autoplay="{{autoPlay}}" loop="{{loop}}" class="vidBg-body"\n' +
     '		ng-style="{ \'background\': \'url(\' + posterUrl + \') #000 no-repeat center center fixed\', \'z-index\': zIndex}"\n' +
-    '		ng-class="fullScreen ? \'vidBg-fullScreen\' : \'vidBg-autoWidth\'">\n' +
+    '		ng-class="{ \'vidBg-fullScreen\' : fullScreen, \'vidBg-autoWidth\' : !fullScreen }">\n' +
     '		<source type="video/webm">\n' +
     '		<source type="video/mp4">\n' +
     '		<source type="video/ogg">\n' +
