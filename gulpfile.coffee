@@ -21,7 +21,7 @@ AUTOPREFIXER_BROWSERS = [
 ]
 
 gulp.task 'styles', ->
-	gulp.src 'src/vidBg.scss'
+	gulp.src 'src/sb.scss'
 		.pipe $.sass
 			style: 'expanded'
 		.pipe $.autoprefixer
@@ -40,7 +40,7 @@ gulp.task 'scripts', ->
 		.pipe do $.coffeelint.reporter
 		.pipe do $.coffee
 		.pipe $.addsrc 'src/template.js'
-		.pipe $.concat 'vidBg.js'
+		.pipe $.concat 'sb.js'
 		.pipe do $.annotate
 		.pipe do $.jshint
 		.pipe $.jshint.reporter 'default'
@@ -55,7 +55,7 @@ gulp.task 'scripts', ->
 gulp.task 'html2js', ->
 	gulp.src 'src/*.html'
 		.pipe $.html2js
-			moduleName: 'vidBgTemplate'
+			moduleName: 'sbTemplate'
 			prefix: ''
 		.pipe $.concat 'template.js'
 		.pipe gulp.dest 'src'
@@ -72,6 +72,19 @@ gulp.task 'srcOrTemplateTask', ->
 
 gulp.task 'default', ['watch'], (cb) ->
 	runSequence 'html2js', ['styles', 'scripts'], 'clean', cb
+
+gulp.task 'test', ->
+	gulp.src './foobar'
+		.pipe $.karma
+			configFile: 'karma.conf.js',
+			action: 'run'
+		.on 'error', (err) ->
+			console.log err
+			this.emit 'end'
+
+gulp.task 'coveralls', ->
+	gulp.src './coverage/*/lcov.info'
+		.pipe do $.coveralls
 
 gulp.task 'clean', ->
 	gulp.src ['*.tmp', 'src/*.js', 'src/*.css'],
