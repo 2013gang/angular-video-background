@@ -3,6 +3,8 @@ angular-video-background
 
 > html5 fullscreen video background in angular
 
+[![Build Status](https://travis-ci.org/2013gang/angular-video-background.svg?branch=master)](https://travis-ci.org/2013gang/angular-video-background)
+
 ## Description
 
 Eye-catching fullscreen video background is adopted by many modern websites for telling their stories. If you want to tell your own story in angular, you now have a choice. Just provide the video resouces, you can have your stunning video background right away.
