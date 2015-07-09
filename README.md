@@ -8,7 +8,7 @@ angular-video-background
 Eye-catching fullscreen video background is adopted by many modern websites for telling their stories. If you want to tell your own story in angular, you now have a choice. Just provide the video resouces, you can have your stunning video background right away.
 
 ## Demo
-<a href="https://gang-demo.herokuapp.com/demo" target="_blank">you can see a demo here</a>
+<a href="https://gang-demo.herokuapp.com/demo" target="_blank">you can see a demo here :)</a>
 
 ## Dependency
 + angular (*)
