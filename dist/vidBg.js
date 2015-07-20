@@ -25,9 +25,9 @@
           processResources = function(resources) {
             var resourceMap;
             resourceMap = {};
-            if (_.isArray(resources)) {
-              _.each(resources, function(ele, index) {
-                if (_.isString(ele)) {
+            if (angular.isArray(resources)) {
+              angular.forEach(resources, function(ele, index) {
+                if (angular.isString(ele)) {
                   if (ele.toUpperCase().indexOf('.WEBM', ele.length - '.WEBM'.length) !== -1) {
                     resourceMap.webm = ele;
                   } else if (ele.toUpperCase().indexOf('.MP4', ele.length - '.MP4'.length) !== -1) {
