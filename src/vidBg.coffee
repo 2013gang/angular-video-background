@@ -22,9 +22,9 @@ angular
     vidEle = vid.eq 0
     processResources = (resources) ->
       resourceMap = {}
-      if _.isArray resources
-        _.each resources, (ele, index) ->
-          if _.isString ele
+      if angular.isArray resources
+        angular.forEach resources, (ele, index) ->
+          if angular.isString ele
             if ele.toUpperCase().indexOf(
               '.WEBM', ele.length - '.WEBM'.length) isnt -1
               resourceMap.webm = ele

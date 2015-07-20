@@ -11,8 +11,7 @@
     "background"
   ],
   "dependencies": {
-    "angular": "*",
-    "lodash": "^2.4"
+    "angular": "*"
   },
   "devDependencies": {
     "angular-mocks": "*"
