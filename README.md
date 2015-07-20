@@ -14,7 +14,6 @@ Eye-catching fullscreen video background is adopted by many modern websites for 
 
 ## Dependency
 + angular (*)
-+ lodash (*)
 
 ## How to get it
 
