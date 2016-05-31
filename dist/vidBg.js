@@ -120,7 +120,7 @@ module.run(['$templateCache', function($templateCache) {
     '		<source type="video/webm">\n' +
     '		<source type="video/mp4">\n' +
     '		<source type="video/ogg">\n' +
-    '		<object type="application/x-shockwave-flash" data="{{resourceMap.flash}}">\n' +
+    '		<object type="application/x-shockwave-flash" data="{{resourceMap.swf}}">\n' +
     '			<param name="movie" />\n' +
     '			<p>Download video as <a href="{{resourceMap.mp4}}">MP4</a>, <a href="{{resourceMap.webm}}">WebM</a>, or <a href="{{resourceMap.ogv}}">Ogg</a>.</p>\n' +
     '		</object>\n' +
